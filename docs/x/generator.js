@@ -47,29 +47,23 @@ class Generator extends AudioWorkletProcessor {
         return t * (((t >> 12) | (t >> 8)) & (63 & (t >> 4)));
     }
 
-    // 42 melody
+    // Rest of these are alternative bytebeats, taken from
+    // From https://dollchan.net/bytebeat
+
+    // The 42 melody, with decay (by Zackx)
+    //
+    // The original 42 melody is t*(42&t>>10)
     gen2(t) {
-        // From https://dollchan.net/bytebeat
-        //
-        // The 42 melody, with decay (by Zackx)
-        //
-        // The original 42 melody is t*(42&t>>10)
         return (((t * (42 & (t >> 10))) % 256) * (-t & 2047)) / 2e3;
     }
 
-    // Sierpinski Harmony
+    // Long Sierpinski Harmony (by viznut)
     gen3(t) {
-        // From https://dollchan.net/bytebeat
-        //
-        // Long Sierpinski Harmony (by viznut)
         return ((5 * t) & (t >> 7)) | ((3 * t) & (t >> 10));
     }
 
-    // Lost in Space
+    // Lost in Space (by xpansive)
     gen4(t) {
-        // From https://dollchan.net/bytebeat
-        //
-        // Lost in Space (by xpansive)
         return (
             ((t * ((t >> 8) | (t >> 9))) & 46 & (t >> 8)) ^
             ((t & (t >> 13)) | (t >> 6))
@@ -78,8 +72,19 @@ class Generator extends AudioWorkletProcessor {
 
     // Untitled by tejeez
     gen5(t) {
-        // From https://dollchan.net/bytebeat
         return (t * ((t >> 5) | (t >> 8))) >> (t >> 16);
+    }
+
+    // generic 3/4 buildup (by yumeji)
+    gen6(t) {
+        return t & 598 ? t >> 4 : t >> 10;
+    }
+
+    // High rhythm thing
+    //
+    // This is the one that's used by our actual demo.
+    gen7(t) {
+        return (t >> (((t >> 13) * t) / 127)) | (t >> 4);
     }
 }
 

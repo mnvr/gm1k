@@ -3,11 +3,12 @@
 URL.createObjectURL(new Blob([`registerProcessor("g", class g extends AudioWorkletProcessor {
 t = 0
 process(_,o) {
-let t = this.t;
+let t = this.t, z = 0
 for (let c of o[0]) {t = this.t
 for (let i = 0; i < c.length; i++) {
-c[i] = (2 * (((((5 * t) & (t >> 7)) | ((3 * t) & (t >> 10))) % 256) / 256) - 1) * 0.01;
-t++;
+    z = t>>(t>>13)*t/127|t>>4
+    c[i] = (2 * ((z % 256) / 256) - 1) * 0.01;
+    t++;
 }}
 this.t= t
 return true;
