@@ -1,13 +1,10 @@
 <h1><button onclick="g()"><h1>go</button>
-<a href="x">?<script>g=()=>{(c=new AudioContext()).audioWorklet.addModule(
-URL.createObjectURL(new Blob([`registerProcessor("g", class g extends AudioWorkletProcessor {
-t = 0
-process(_,o) {
-let t=this.t,z=0
-for (let c of o[0]){t=this.t
-for (let i=0;i<c.length; i++) {
-z = t>>(t>>13)*t/127|t>>4
-c[i++] = (2 * ((z % 256) / 256) - 1) * 0.01
-t++}}this.t=t
-return true}})`],{type:"application/javascript"})))
-.then(()=>new AudioWorkletNode(c, "g").connect(c.destination))}</script>
+<a href=x>?<script>g=()=>{(c=new
+AudioContext()).audioWorklet.addModule(URL.createObjectURL(new Blob([
+`registerProcessor("g",class g extends AudioWorkletProcessor{t=0
+process(i,o){let t,z,c
+for(c of o[0]){t=this.t
+for(i=0;i<c.length;i++){z=t>>(t>>13)*t/127|t>>4
+c[i++]=(2*((z%256)/256)-1)*0.01
+t++}}this.t=t;return true}})`],{type:"application/javascript"})))
+.then(()=>new AudioWorkletNode(c,"g").connect(c.destination))}</script>
