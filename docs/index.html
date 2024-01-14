@@ -27,19 +27,13 @@
                 console.log("play");
                 context = new AudioContext();
 
-                // Plays a 440 Hz sine by default
-                const osc = context.createOscillator();
-
                 // Load and register our audio processor
-                await context.audioWorklet.addModule("processor.js");
-                // Create it
-                const processor = new AudioWorkletNode(context, "1k-processor");
+                await context.audioWorklet.addModule("generator.js");
 
-                // Connect it to the OSC, and let it go.
-                osc.connect(processor);
-                processor.connect(context.destination);
-                // osc.connect(context.destination);
-                osc.start();
+                // Create an instance of it, and connect it to the output so
+                // that we can hear what it is generating.
+                const generator = new AudioWorkletNode(context, "1k-gen");
+                generator.connect(context.destination);
             }
         </script>
     </body>

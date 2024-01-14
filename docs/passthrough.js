@@ -1,3 +1,5 @@
+// Unused example showing a passthrough processor
+
 // Our custom processor needs to be defined in a separate file.
 //
 // There seems to be a workaround here:
