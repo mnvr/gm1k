@@ -6,8 +6,8 @@ to produce a neverending sound using 470 bytes of JavaScript.
 
 Live version is at https://mnvr.github.io/gm1k.
 
-Source code for the demo is in [docs/index.html](docs/index.html) - it is a
-standalone, 470 character, HTML file. The song it plays is a remix of the
-Sierpinski Harmony by viznut (the creator of bytebeat) himself.
+Source code for the demo is in [index.html](index.html) - it is a standalone,
+470 character, HTML file. The song it plays is a remix of the Sierpinski Harmony
+by viznut (the creator of bytebeat) himself.
 
-See [docs/x](docs/x) for a longer version with more comments and explanations.
+See [x](x) for a longer version with more comments and explanations.
