@@ -12,6 +12,12 @@
         <script>
             function play() {
                 console.log("play");
+                const context = new AudioContext();
+
+                // Plays a 440 Hz sine by default
+                const osc = context.createOscillator();
+                osc.connect(context.destination);
+                osc.start();
             }
         </script>
     </body>
