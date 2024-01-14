@@ -36,9 +36,9 @@
                 const processor = new AudioWorkletNode(context, "1k-processor");
 
                 // Connect it to the OSC, and let it go.
-                // osc.connect(processor);
-                // processor.connect(context.destination);
-                osc.connect(context.destination);
+                osc.connect(processor);
+                processor.connect(context.destination);
+                // osc.connect(context.destination);
                 osc.start();
             }
         </script>
