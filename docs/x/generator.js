@@ -24,7 +24,7 @@ class Generator extends AudioWorkletProcessor {
                 // Then map it to [-1, 1]. But that's too loud, esp on Safari.
                 // So multiply it by 0.02. Maybe too low, but we don't want to
                 // blow up in someone's earphones.
-                ch[i] = (2 * z - 1) * 0.01;
+                ch[i] = (2 * z - 1) * 0.003;
                 t++;
             }
         }
