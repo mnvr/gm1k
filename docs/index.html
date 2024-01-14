@@ -1,1 +1,18 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Generative music in less than 1K of JavaScript</title>
+    </head>
+    <body>
+        <!-- We need a button etc to start playback; browsers won't emit sound
+             without user interaction -->
+        <button onclick="play()">play</button>
+        <script>
+            function play() {
+                console.log("play");
+            }
+        </script>
+    </body>
+</html>
