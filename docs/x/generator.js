@@ -16,10 +16,12 @@ class Generator extends AudioWorkletProcessor {
         for (const ch of channels) {
             t = this.t;
             for (let i = 0; i < ch.length; i++) {
-                ch[i] = 2 * (this.gen(t) / 256) - 1;
+                const z = (this.gen(t) % 256 / 256);
+                ch[i] = (2 * (i / ch.length) - 1) * 0.01;
                 t++;
             }
         }
+        // t = t % 65536;
         this.t = t;
 
         // Return true to let the AudioContext know that we're still generating.

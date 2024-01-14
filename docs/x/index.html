@@ -4,12 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Generative music in less than 1K of JavaScript</title>
-
-        <style>
-            :root {
-                color-scheme: light dark;
-            }
-        </style>
     </head>
     <body>
         <!-- We need a button etc to start playback; browsers won't emit sound
@@ -45,7 +39,7 @@
                 context = new AudioContext();
 
                 // Load and register our audio processor
-                await context.audioWorklet.addModule("generator.js");
+                await context.audioWorklet.addModule("./generator.js");
 
                 // Create an instance of it, and connect it to the output so
                 // that we can hear what it is generating.
