@@ -3,7 +3,7 @@
 // There seems to be a workaround here:
 // https://github.com/WebAudio/web-audio-api-v2/issues/109#issuecomment-756634198
 
-class Processor extends AudioWorkletProcessor {
+class PassthroughProcessor extends AudioWorkletProcessor {
     // This will be called with each 128 frames (per channel).
     process(inputs, outputs) {
         // This is all very generic, but usually we'll have one input and one
@@ -22,7 +22,7 @@ class Processor extends AudioWorkletProcessor {
             const ich = input[c];
             const och = output[c];
             for (let i = 0; i < ich.length; i++) {
-                och[i] = 2 * i / ich.length - 1;
+                och[i] = ich[i];
             }
         }
 
@@ -31,4 +31,4 @@ class Processor extends AudioWorkletProcessor {
     }
 }
 
-registerProcessor("1k-processor", Processor);
+registerProcessor("passthrough", PassthroughProcessor);
