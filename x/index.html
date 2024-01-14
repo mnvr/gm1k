@@ -37,7 +37,7 @@
                 context = new AudioContext();
 
                 // Load and register our audio processor
-                await context.audioWorklet.addModule("x/generator.js");
+                await context.audioWorklet.addModule("./generator.js");
 
                 // Create an instance of it, and connect it to the output so
                 // that we can hear what it is generating.
