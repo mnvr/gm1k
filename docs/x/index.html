@@ -4,12 +4,28 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Generative music in less than 1K of JavaScript</title>
+
+        <style>
+            :root {
+                color-scheme: light dark;
+            }
+        </style>
     </head>
     <body>
         <!-- We need a button etc to start playback; browsers won't emit sound
              without user interaction -->
         <button onclick="toggle()">play</button>
-        <a href="x">?</a>
+        <p>
+            This is the more readable and pausable version of the
+            <a href="../index.html"
+                >Generative music in less than 1K of JavaScript</a
+            >
+            demo
+        </p>
+        <p>
+            The source code for both of these is available on
+            <a href="https://github.com/mnvr/gm1k">GitHub</a>
+        </p>
         <script>
             let context;
             function toggle() {
