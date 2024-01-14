@@ -1,13 +1,14 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title></title>
-    </head>
-    <body>
-        <button onclick="go()">go</button>
-        <a href="x">?</a>
-        <script type="x">
-            registerProcessor("g", class g extends AudioWorkletProcessor {
+<meta name="viewport" content="width=device-width" />
+<button onclick="g()">go</button>
+<a href="x">?</a>
+<script>
+    g = () => {
+        (c = new AudioContext()).audioWorklet
+            .addModule(
+                URL.createObjectURL(
+                    new Blob(
+                        [
+                            `registerProcessor("g", class g extends AudioWorkletProcessor {
                 t = 0
                 process(_,o) {
                     let t = this.t;
@@ -21,25 +22,14 @@
                     this.t = t;
                     return true;
                 }
-            })
-        </script>
-        <script>
-            function go() {
-                (c = new AudioContext()).audioWorklet
-                    .addModule(
-                        URL.createObjectURL(
-                            new Blob(
-                                [document.querySelector("script[type=x]").text],
-                                {
-                                    type: "application/javascript",
-                                }
-                            )
-                        )
+            })`,
+                        ],
+                        {
+                            type: "application/javascript",
+                        }
                     )
-                    .then((_) =>
-                        new AudioWorkletNode(c, "g").connect(c.destination)
-                    );
-            }
-        </script>
-    </body>
-</html>
+                )
+            )
+            .then((_) => new AudioWorkletNode(c, "g").connect(c.destination));
+    };
+</script>
