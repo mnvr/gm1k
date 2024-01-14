@@ -81,8 +81,6 @@ class Generator extends AudioWorkletProcessor {
     }
 
     // High rhythm thing
-    //
-    // This is the one that's used by our actual demo, but slowed down by 2.
     gen7(t) {
         return (t >> (((t >> 13) * t) / 127)) | (t >> 4);
     }

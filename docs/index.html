@@ -2,9 +2,9 @@
 <a href=x>?<script>g=()=>{(c=new
 AudioContext()).audioWorklet.addModule(URL.createObjectURL(new Blob([
 `registerProcessor("g",class g extends AudioWorkletProcessor{t=0
-process(i,o){let t,z,c,m=512
+process(i,o){let t,z,c,m=999
 for(c of o[0]){t=this.t
-for(i=0;i<c.length;i++){z=t>>(t>>13)*t/127|t>>4
-c[i++]=(2*((z%m)/m)-1)*0.01
+for(i=0;i<c.length;){z=5*t&t>>7|3*t&t>>10
+c[i+=2]=(2*((z%m)/m)-1)*0.01
 t++}}this.t=t;return true}})`],{type:"application/javascript"})))
 .then(()=>new AudioWorkletNode(c,"g").connect(c.destination))}</script>
