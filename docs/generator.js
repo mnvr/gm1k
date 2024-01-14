@@ -16,8 +16,7 @@ class Generator extends AudioWorkletProcessor {
         for (const ch of channels) {
             t = this.t;
             for (let i = 0; i < ch.length; i++) {
-                // From http://viznut.fi/demos/unix/bytebeat_formulas.txt
-                ch[i] = t * (((t >> 12) | (t >> 8)) & (63 & (t >> 4)));
+                ch[i] = 2 * (this.gen(t) / 256) - 1;
                 t++;
             }
         }
@@ -25,6 +24,19 @@ class Generator extends AudioWorkletProcessor {
 
         // Return true to let the AudioContext know that we're still generating.
         return true;
+    }
+
+    // Bytebeat generator
+    //
+    // Input is the time t, a monotonically increasing integral value.
+    // Outputs should be a value betwen 0 and 256.
+    gen(t) {
+        // From http://viznut.fi/demos/unix/bytebeat_formulas.txt
+        //
+        // This is the "original" bytebeat formulation that viznut discovered.
+        // http://countercomplex.blogspot.com/2011/10/algorithmic-symphonies-from-one-line-of.html
+        // Kiitos!
+        return t * (((t >> 12) | (t >> 8)) & (63 & (t >> 4)));
     }
 }
 
