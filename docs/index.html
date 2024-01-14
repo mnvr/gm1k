@@ -8,14 +8,36 @@
     <body>
         <!-- We need a button etc to start playback; browsers won't emit sound
              without user interaction -->
-        <button onclick="play()">play</button>
+        <button onclick="toggle()">play</button>
         <script>
-            function play() {
+            let context;
+            function toggle() {
+                const button = document.getElementsByTagName("button")[0];
+                if (context) {
+                    button.innerText = "play";
+                    context.close();
+                    context = undefined;
+                } else {
+                    button.innerText = "pause";
+                    play();
+                }
+            }
+
+            async function play() {
                 console.log("play");
-                const context = new AudioContext();
+                context = new AudioContext();
 
                 // Plays a 440 Hz sine by default
                 const osc = context.createOscillator();
+
+                // Load and register our audio processor
+                await context.audioWorklet.addModule("processor.js");
+                // Create it
+                const processor = new AudioWorkletNode(context, "1k-processor");
+
+                // Connect it to the OSC, and let it go.
+                // osc.connect(processor);
+                // processor.connect(context.destination);
                 osc.connect(context.destination);
                 osc.start();
             }
