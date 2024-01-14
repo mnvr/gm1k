@@ -1,28 +1,17 @@
-<meta name="viewport" content="width=device-width" />
-<button onclick="g()">go</button>
-<a href="x">?</a>
-<script>
-    g = () => {
-        (c = new AudioContext()).audioWorklet
-            .addModule(
-                URL.createObjectURL(
-                    new Blob(
-                        [
-                            `registerProcessor("g", class g extends AudioWorkletProcessor {
-                t = 0
-                process(_,o) {
-                    let t = this.t;
-                    for (const c of o[0]) {
-                        t = this.t;
-                        for (let i = 0; i < c.length; i++) {
-                            c[i] = (2 * (((((5 * t) & (t >> 7)) | ((3 * t) & (t >> 10))) % 256) / 256) - 1) * 0.01;
-                            t++;
-                        }
-                    }
-                    this.t = t;
-                    return true;
-                }
-            })`,
+<h1><button onclick="g()"><h1>go</button>
+<a href="x">?<script>g=()=>{(c=new AudioContext()).audioWorklet.addModule(
+URL.createObjectURL(new Blob([`registerProcessor("g", class g extends AudioWorkletProcessor {
+t = 0
+process(_,o) {
+let t = this.t;
+for (let c of o[0]) {t = this.t
+for (let i = 0; i < c.length; i++) {
+c[i] = (2 * (((((5 * t) & (t >> 7)) | ((3 * t) & (t >> 10))) % 256) / 256) - 1) * 0.01;
+t++;
+}}
+this.t= t
+return true;
+}})`,
                         ],
                         {
                             type: "application/javascript",
