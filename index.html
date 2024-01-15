@@ -1,10 +1,10 @@
 <h1><button onclick="((c=new
 AudioContext())=>c.audioWorklet.addModule(`data:text/javascript;base64,${btoa`
-registerProcessor('g',class g extends AudioWorkletProcessor{t=0
-process(i,o,t,c,m=999){for(i=0,o=o[0];i<o[0].length;i+=2){t=this.t
+let n=0;registerProcessor('g',class extends AudioWorkletProcessor{
+process(i,o,t,c,m=999){for(i=0,o=o[0];i<o[0].length;i+=2){t=n
 t=5*t&t>>7|3*t&t>>10
 t=(2*(t%m/m)-1)/40
 for(c of o)c[i]=t
-this.t++}return !!1}})`}`).then(()=>new
+n++}return !!1}})`}`).then(()=>new
 AudioWorkletNode(c,'g').connect(c.destination)))()"><h1>go</button>
 <a href=x>?
