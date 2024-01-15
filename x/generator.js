@@ -12,23 +12,24 @@ class Generator extends AudioWorkletProcessor {
         // - Each channel is a Float32Array containing 128 samples.
         // - Each sample is in the range [-1, 1].
 
-        let t = this.t;
-        for (const ch of channels) {
-            t = this.t;
-            for (let i = 0; i < ch.length; i++) {
-                // Convert the output of gen into a number between 0 - 1
-                //
-                // This decimates the original sound a bit, but for now it is
-                // more important to not accidentally produce very loud noises.
-                const z = (this.gen3(t) % 256) / 256;
-                // Then map it to [-1, 1]. But that's too loud, esp on Safari.
-                // So multiply it by 0.02. Maybe too low, but we don't want to
-                // blow up in someone's earphones.
-                ch[i] = (2 * z - 1) * 0.003;
-                t++;
+        for (let i = 0; i < channels[0].length; i++) {
+            // Convert the output of gen into a number between 0 - 1
+            //
+            // This decimates the original sound a bit, but for now it is
+            // more important to not accidentally produce very loud noises.
+            //
+            // To this properly we should maybe instead divide by the
+            // sampleRate of the audio context.
+            let z = (this.gen3(this.t) % 256) / 256;
+            // Then map it to [-1, 1]. But that's too loud, esp on Safari.
+            // So multiply it by 0.003. Maybe too low, but we don't want to
+            // blow up in someone's earphones.
+            z = (2 * z - 1) * 0.005;
+            for (const ch of channels) {
+                ch[i] = z;
             }
+            this.t++;
         }
-        this.t = t;
 
         // Return true to let the AudioContext know that we're still generating.
         return true;
