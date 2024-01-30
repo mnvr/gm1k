@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Generative music using JavaScript</title>
+    </head>
+    <body>
+        <button onclick="toggle()">play</button>
+        <p>
+            <a href="https://github.com/mnvr/gm1k">Source code (GitHub)</a>
+        </p>
+        <script>
+            let context;
+            function toggle() {
+                const button = document.getElementsByTagName("button")[0];
+                if (context) {
+                    button.innerText = "play";
+                    context.close();
+                    context = undefined;
+                } else {
+                    button.innerText = "pause";
+                    play();
+                }
+            }
+
+            async function play() {
+                console.log("play");
+                context = new AudioContext();
+
+                // Load and register our audio processor
+                await context.audioWorklet.addModule("./generator.js");
+
+                // Create an instance of it, and connect it to the output so
+                // that we can hear what it is generating.
+                const generator = new AudioWorkletNode(context, "1k-gen");
+                generator.connect(context.destination);
+            }
+        </script>
+    </body>
+</html>
