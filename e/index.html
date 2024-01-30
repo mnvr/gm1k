@@ -6,26 +6,83 @@
         <title>Generative music using JavaScript</title>
     </head>
     <body>
-        <button onclick="toggle()">play</button>
+        <style>
+            :root {
+                background-color: rgb(10, 10, 10);
+                color: tomato;
+            }
+
+            body {
+                margin: 1rem;
+            }
+            a {
+                color: peru;
+                opacity: 0.8;
+            }
+            a:hover {
+                opacity: 1;
+            }
+
+            .container {
+                margin-block-start: 2rem;
+                margin-block-end: 4rem;
+                padding-inline: 2px;
+            }
+
+            .beats {
+                height: 100px;
+                margin-block-start: 1em;
+                margin-block-end: 1.5em;
+
+                display: flex;
+                gap: 18px;
+            }
+
+            .beats > div {
+                width: 10px;
+                border: 1px solid tomato;
+                box-sizing: border-box;
+            }
+
+            .beats > div.on {
+                background-color: tomato
+            }
+        </style>
+
+        <button onclick="toggle()">Play</button>
+
+        <div class="container">
+            <div class="beats">
+                <div id="b11"></div>
+                <div id="b11"></div>
+                <div id="b13"></div>
+                <div id="b14"></div>
+                <div id="b15"></div>
+                <div id="b16"></div>
+                <div id="b17"></div>
+            </div>
+        </div>
+
         <p>
-            <a href="https://github.com/mnvr/gm1k">Source code (GitHub)</a>
+            <small>
+                <a href="https://github.com/mnvr/gm1k">Source code on GitHub</a>
+            </small>
         </p>
         <script>
             let context;
             function toggle() {
                 const button = document.getElementsByTagName("button")[0];
                 if (context) {
-                    button.innerText = "play";
+                    button.innerText = "Play";
                     context.close();
                     context = undefined;
                 } else {
-                    button.innerText = "pause";
+                    button.innerText = "Pause";
                     play();
                 }
             }
 
             async function play() {
-                console.log("play");
                 context = new AudioContext();
 
                 // Load and register our audio processor
