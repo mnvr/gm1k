@@ -79,7 +79,53 @@
             </small>
         </p>
         <script>
+            // https://github.com/mnvr/mrmr.io/tree/main/pages/mj/euclid
+            const E = (k, n) => {
+                let s = Array(n).fill(0)
+                    .map((_, i) => (i < k ? [1] : [0]))
+
+                let d = n - k
+                n = Math.max(k, d)
+                k = Math.min(k, d)
+                let z = d
+
+                while (z > 0 || k > 1) {
+                    for (let i = 0; i < k; i++)
+                        s[i].push(...s[s.length - 1 - i])
+                    s.splice(-k)
+                    z = z - k
+                    d = n - k
+                    n = Math.max(k, d)
+                    k = Math.min(k, d)
+                }
+
+                return s.flat()
+            };
+
             let context;
+
+            const beep = (
+                duration,
+                attack = 0.001,
+                release = 0.1,
+                frequency = 440,
+            ) => {
+                const ctx = context;
+
+                const osc = new OscillatorNode(ctx, { frequency });
+                const env = new GainNode(ctx);
+                const t = ctx.currentTime;
+
+                env.gain.setValueCurveAtTime([0, 1], t, attack);
+                env.gain.setTargetAtTime(0, t + attack + duration, release / 5);
+
+                const mix = new GainNode(ctx, { gain: 0.1 });
+
+                osc.connect(env).connect(mix).connect(ctx.destination);
+                osc.start();
+                osc.stop(t + attack + duration + release);
+            };
+
             function toggle() {
                 const button = document.getElementsByTagName("button")[0];
                 if (context) {
@@ -94,14 +140,9 @@
 
             async function play() {
                 context = new AudioContext();
+                context.resume();
 
-                // Load and register our audio processor
-                await context.audioWorklet.addModule("./generator.js");
-
-                // Create an instance of it, and connect it to the output so
-                // that we can hear what it is generating.
-                const generator = new AudioWorkletNode(context, "1k-gen");
-                generator.connect(context.destination);
+                beep(0.01);
             }
         </script>
     </body>
