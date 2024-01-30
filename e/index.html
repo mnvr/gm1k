@@ -13,20 +13,30 @@
             }
 
             body {
-                margin: 1rem;
+                margin-inline: 1em;
+                margin-block: 1.8em;
+            }
+
+            @media (width > 500px) {
+                body {
+                    margin-inline: 2em;
+                }
+            }
+
+            p {
+                margin-block: 3em;
             }
             a {
                 color: peru;
                 opacity: 0.8;
             }
+
             a:hover {
                 opacity: 1;
             }
 
             .container {
-                margin-block-start: 2rem;
-                margin-block-end: 4rem;
-                padding-inline: 2px;
+                margin-block: 3em;
             }
 
             .beats {
@@ -49,8 +59,6 @@
             }
         </style>
 
-        <button onclick="toggle()">Play</button>
-
         <div class="container">
             <div class="beats">
                 <div id="b11"></div>
@@ -62,6 +70,8 @@
                 <div id="b17"></div>
             </div>
         </div>
+
+        <button onclick="toggle()">Play</button>
 
         <p>
             <small>
