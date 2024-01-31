@@ -206,19 +206,20 @@
                     .forEach((e) => e.classList.remove("on"));
 
                 const seq = E(k, n);
+                const p8 = p % n8;
 
-                if (seq38[p % n8]) {
-                    document.querySelector(`#b1${p + 1}`).classList.add("on");
+                if (seq38[p8]) {
+                    classList(`#b1${p8 + 1}`).add("on");
                     beep(0.01);
                 }
 
                 if (seq[p]) {
-                    document.querySelector(`#b2${p + 1}`).classList.add("on");
+                    classList(`#b2${p + 1}`).add("on");
                     beep(0.01);
                 }
 
-                if (seq78[p % n8]) {
-                    document.querySelector(`#b3${p + 1}`).classList.add("on");
+                if (seq78[p8]) {
+                    classList(`#b3${p8 + 1}`).add("on");
                     beep(0.01);
                 }
 
@@ -229,18 +230,19 @@
                     if (k == n) {
                         k = n < 5 ? 1 : 3;
                         n = n + 1;
-                        document
-                            .querySelector(`#b2${n}`)
-                            .classList.remove("oob");
                         if (n == 13) {
                             n = 4;
                             for (let i = 5; i < 13; i++)
-                                document
-                                    .querySelector(`#b2${n}`)
-                                    .classList.add("oob");
+                                classList(`#b2${i}`).add("oob");
+                        } else {
+                            classList(`#b2${n}`).remove("oob");
                         }
                     }
                 }
+            }
+
+            function classList(selector) {
+                return document.querySelector(selector).classList;
             }
         </script>
     </body>
