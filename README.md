@@ -22,15 +22,17 @@ See [x](x) for a longer version with more comments and explanations.
 ### Cycling with Euclid – A song in E(3, 8)
 
 The prompt for day 31 of Genuary 2024 was to produce a generative piece of
-music. I made a neverending song using only HTML/JS/CSS, no dependencies.
+music. I made a neverending song using only HTML/JS/CSS without using any
+dependencies or libraries. While code size was not a concern, the resulting
+files is just 250 lines too.
 
 Live version is at https://mnvr.github.io/gm1k/e.
 
 Source code is in [e/index.html](e/index.html) – a standalone HTML file (you can
-just open it in your browser and play directly too). The song it plays is a
+just open it in your browser and play it directly too). The song it plays is a
 composition using Euclidean rhythms. The bassline and the trill rhythms are
-`E(3,8)`, on which totters around the main Euclidean rhythm which cycles through
-`E(3,4)` to `E(11, 12)`.
+`E(3,8)` and `E(7, 8)`, around which totters around the main Euclidean rhythm
+that cycles through `E(3,4)` to `E(11, 12)`.
 
 I also wrote a tutorial about [Euclidean rhythms](https://mrmr.io/mj/euclid)
 that explains the code behind the song.

@@ -141,11 +141,9 @@
                 return s.flat();
             };
 
-            /*
-              Unlike *410*, this song doesn't continue playing in the background
-              in Safari when you switch tabs (because Safari throttles
-              setInterval and co).
-            */
+            /* Unlike *410*, this song doesn't continue playing in the
+               background in Safari when you switch tabs since Safari throttles
+               setInterval and co) */
 
             let context; /* Audio context */
             let intervalID; /* The setInterval ID, set if we're playing */
@@ -210,17 +208,19 @@
 
                 if (seq38[p8]) {
                     classList(`#b1${p8 + 1}`).add("on");
-                    beep(0.01);
+                    beep(0.01, 0.001, 0.1, 660);
                 }
 
                 if (seq[p]) {
                     classList(`#b2${p + 1}`).add("on");
                     beep(0.01);
+                    beep(0.005, 0.001, 0.02, 660);
+
                 }
 
                 if (seq78[p8]) {
                     classList(`#b3${p8 + 1}`).add("on");
-                    beep(0.01);
+                    beep(0.1, 0.001, 0.1, 110);
                 }
 
                 p = p + 1;
