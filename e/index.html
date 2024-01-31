@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>Generative music using JavaScript</title>
+        <title>Cycling with Euclid - Generative music using JavaScript</title>
     </head>
 
     <body>
@@ -56,20 +56,47 @@
                 box-sizing: border-box;
             }
 
+            .beats > div.oob {
+                display: none;
+            }
+
             .beats > div.on {
                 background-color: tomato;
             }
         </style>
 
         <div class="container">
-            <div class="beats">
+            <div class="beats" id="beats-1">
                 <div id="b11"></div>
-                <div id="b11"></div>
+                <div id="b12"></div>
                 <div id="b13"></div>
                 <div id="b14"></div>
                 <div id="b15"></div>
                 <div id="b16"></div>
                 <div id="b17"></div>
+            </div>
+            <div class="beats" id="beats-2">
+                <div id="b21"></div>
+                <div id="b22"></div>
+                <div id="b23"></div>
+                <div id="b24"></div>
+                <div id="b25" class="oob"></div>
+                <div id="b26" class="oob"></div>
+                <div id="b27" class="oob"></div>
+                <div id="b28" class="oob"></div>
+                <div id="b29" class="oob"></div>
+                <div id="b210" class="oob"></div>
+                <div id="b211" class="oob"></div>
+                <div id="b212" class="oob"></div>
+            </div>
+            <div class="beats" id="beats-3">
+                <div id="b31"></div>
+                <div id="b32"></div>
+                <div id="b33"></div>
+                <div id="b34"></div>
+                <div id="b35"></div>
+                <div id="b36"></div>
+                <div id="b37"></div>
             </div>
         </div>
 
@@ -80,8 +107,9 @@
                 <a href="https://github.com/mnvr/gm1k">Source code on GitHub</a>
             </small>
         </p>
+
         <script>
-            // https://github.com/mnvr/mrmr.io/tree/main/pages/mj/euclid
+            // https://github.com/mnvr/mrmr.io/tree/main/pages/mj/euclid/er.js
             const E = (k, n) => {
                 let s = Array(n)
                     .fill(0)
@@ -105,7 +133,10 @@
                 return s.flat();
             };
 
-            let context;
+            let context; /* Audio context */
+            let intervalID; /* The setIntervalID, set if we're playing */
+            let k, n; /* Current E(k, n) for the middle beat */
+            let p; /* Phase */
 
             const beep = (
                 duration,
