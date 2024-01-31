@@ -30,7 +30,7 @@ Source code is in [e/index.html](e/index.html) – a standalone HTML file (you c
 just open it in your browser and play directly too). The song it plays is a
 composition using Euclidean rhythms. The bassline and the trill rhythms are
 `E(3,8)`, on which totters around the main Euclidean rhythm which cycles through
-`E(1,4)` to `E(11, 12)`.
+`E(3,4)` to `E(11, 12)`.
 
 I also wrote a tutorial about [Euclidean rhythms](https://mrmr.io/mj/euclid)
 that explains the code behind the song.

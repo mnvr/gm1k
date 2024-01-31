@@ -205,8 +205,15 @@
                     .querySelectorAll(".on")
                     .forEach((e) => e.classList.remove("on"));
 
+                const seq = E(k, n);
+
                 if (seq38[p % n8]) {
                     document.querySelector(`#b1${p + 1}`).classList.add("on");
+                    beep(0.01);
+                }
+
+                if (seq[p]) {
+                    document.querySelector(`#b2${p + 1}`).classList.add("on");
                     beep(0.01);
                 }
 
@@ -216,8 +223,23 @@
                 }
 
                 p = p + 1;
-                if (p === 8) {
+                if (p == n) {
                     p = 0;
+                    k = k + 1;
+                    if (k == n) {
+                        k = n < 5 ? 1 : 3;
+                        n = n + 1;
+                        document
+                            .querySelector(`#b2${n}`)
+                            .classList.remove("oob");
+                        if (n == 13) {
+                            n = 4;
+                            for (let i = 5; i < 13; i++)
+                                document
+                                    .querySelector(`#b2${n}`)
+                                    .classList.add("oob");
+                        }
+                    }
                 }
             }
         </script>
