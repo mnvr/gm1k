@@ -10,7 +10,6 @@
         <style>
             :root {
                 background-color: rgb(10, 10, 10);
-                color: tomato;
             }
 
             body {
@@ -72,7 +71,7 @@
         </style>
 
         <div class="container">
-            <div class="beats" id="beats-1">
+            <div class="beats">
                 <div id="b11"></div>
                 <div id="b12"></div>
                 <div id="b13"></div>
@@ -82,7 +81,7 @@
                 <div id="b17"></div>
                 <div id="b18"></div>
             </div>
-            <div class="beats" id="beats-2">
+            <div class="beats">
                 <div id="b21"></div>
                 <div id="b22"></div>
                 <div id="b23"></div>
@@ -96,7 +95,7 @@
                 <div id="b211" class="oob"></div>
                 <div id="b212" class="oob"></div>
             </div>
-            <div class="beats" id="beats-3">
+            <div class="beats">
                 <div id="b31"></div>
                 <div id="b32"></div>
                 <div id="b33"></div>
@@ -143,7 +142,7 @@
 
             /* Unlike *410*, this song doesn't continue playing in the
                background in Safari when you switch tabs since Safari throttles
-               setInterval and co) */
+               setInterval and co */
 
             let context; /* Audio context */
             let intervalID; /* The setInterval ID, set if we're playing */

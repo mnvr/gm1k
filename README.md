@@ -1,9 +1,9 @@
-This repository contains two pieces of music using plain JS - *410*, and *Cycling
-with Euclid*.
+This repository contains two pieces of music using plain JS:
 
----
+- *410*
+- *Cycling with Euclid*
 
-### 410 - Generative music in 410 bytes of Javascript
+## 410 - Generative music in 410 bytes of Javascript
 
 The prompt for day 14 of Genuary 2024 was to produce a generative piece that
 uses less than 1K of source code. This one uses standard browser audio APIs to
@@ -17,9 +17,7 @@ by viznut (the creator of bytebeat).
 
 See [x](x) for a longer version with more comments and explanations.
 
----
-
-### Cycling with Euclid – A song in E(3, 8)
+## Cycling with Euclid – A song in E(3, 8)
 
 The prompt for day 31 of Genuary 2024 was to produce a generative piece of
 music. I made a neverending song using only HTML/JS/CSS without using any
@@ -37,7 +35,7 @@ that cycles through `E(3,4)` to `E(11, 12)`.
 I also wrote a tutorial about [Euclidean rhythms](https://mrmr.io/mj/euclid)
 that explains the code behind the song.
 
----
+## Postscript
 
 Rest of my (visual) Genuary 2024 artworks are at
 [mrmr.io/gen24](https://mrmr.io/gen24).
