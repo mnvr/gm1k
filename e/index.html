@@ -80,6 +80,7 @@
                 <div id="b15"></div>
                 <div id="b16"></div>
                 <div id="b17"></div>
+                <div id="b18"></div>
             </div>
             <div class="beats" id="beats-2">
                 <div id="b21"></div>
@@ -103,6 +104,7 @@
                 <div id="b35"></div>
                 <div id="b36"></div>
                 <div id="b37"></div>
+                <div id="b38"></div>
             </div>
         </div>
 
@@ -139,10 +141,16 @@
                 return s.flat();
             };
 
+            /*
+              Unlike *410*, this song doesn't continue playing in the background
+              in Safari when you switch tabs (because Safari throttles
+              setInterval and co).
+            */
+
             let context; /* Audio context */
-            let intervalID; /* The setIntervalID, set if we're playing */
-            let k, n; /* Current E(k, n) for the middle beat */
-            let p; /* Phase */
+            let intervalID; /* The setInterval ID, set if we're playing */
+            let k = 3, n = 4; /* Current E(k, n) for the middle beat */
+            let p = 0; /* Phase */
 
             const beep = (
                 duration,
@@ -168,21 +176,37 @@
 
             function toggle() {
                 const button = document.getElementsByTagName("button")[0];
-                if (context) {
+                if (intervalID) {
+                    clearInterval(intervalID);
+                    intervalID = undefined;
                     button.innerText = "Play";
-                    context.close();
-                    context = undefined;
                 } else {
                     button.innerText = "Pause";
                     play();
                 }
             }
 
-            async function play() {
+            function play() {
                 context = new AudioContext();
                 context.resume();
 
+                intervalID = setInterval(tick, 1000 / 7);
+                // The button tap feels more natural without this initial tick
+                // tick();
+            }
+
+            function tick() {
+                document
+                    .querySelectorAll(".on")
+                    .forEach((e) => e.classList.remove("on"));
+                document.querySelector(`#b1${p + 1}`).classList.add("on");
+
                 beep(0.01);
+
+                p = p + 1;
+                if (p === 8) {
+                    p = 0;
+                }
             }
         </script>
     </body>
