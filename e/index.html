@@ -50,6 +50,12 @@
                 gap: 18px;
             }
 
+            @media (width < 400px) {
+                .beats {
+                    gap: min((100% - 12 * 10px) / 11, 18px);
+                }
+            }
+
             .beats > div {
                 width: 10px;
                 border: 1px solid tomato;
