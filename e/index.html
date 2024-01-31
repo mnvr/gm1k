@@ -149,8 +149,13 @@
 
             let context; /* Audio context */
             let intervalID; /* The setInterval ID, set if we're playing */
-            let k = 3, n = 4; /* Current E(k, n) for the middle beat */
+            let k = 3,
+                n = 4; /* Current E(k, n) for the middle beat */
             let p = 0; /* Phase */
+
+            const n8 = 8;
+            const seq38 = E(3, 8);
+            const seq78 = E(7, 8);
 
             const beep = (
                 duration,
@@ -191,7 +196,7 @@
                 context.resume();
 
                 intervalID = setInterval(tick, 1000 / 7);
-                // The button tap feels more natural without this initial tick
+                // The button interaction feels better without this initial tick
                 // tick();
             }
 
@@ -199,9 +204,16 @@
                 document
                     .querySelectorAll(".on")
                     .forEach((e) => e.classList.remove("on"));
-                document.querySelector(`#b1${p + 1}`).classList.add("on");
 
-                beep(0.01);
+                if (seq38[p % n8]) {
+                    document.querySelector(`#b1${p + 1}`).classList.add("on");
+                    beep(0.01);
+                }
+
+                if (seq78[p % n8]) {
+                    document.querySelector(`#b3${p + 1}`).classList.add("on");
+                    beep(0.01);
+                }
 
                 p = p + 1;
                 if (p === 8) {
